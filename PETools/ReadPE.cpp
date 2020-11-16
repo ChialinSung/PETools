@@ -17,6 +17,7 @@ coding by Song Jialin (Chialin)
 #include <winnt.h>
 #include <stdio.h>
 #include <Windows.h>
+#include <fstream>
 
 
 void* ReadPE::ReadPEFile(char* lpszFile){

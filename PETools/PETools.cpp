@@ -9,16 +9,24 @@
 
 #include "TestClass.h"
 #include "PrintPE.h"
+#include "File2Image.h"
 
 
 using namespace std;
 
 int main()
 {   
+    //PE文件路径
     char PEfilepath[] = "C:/Users/chialin/Desktop/notepad.exe";
-    PrintPE ppe;
-    ppe.PrintNTHeaders(PEfilepath);
 
+    //打印PE文件信息
+    //PrintPE ppe;
+    //ppe.printPEHeaders(PEfilepath);
+    //ppe.retSizeOfImage();
+
+    //将fileBuffer读到ImageBuffer
+    File2Image f2i;
+    f2i.readFile2Image(PEfilepath);
 
 
     //测试类文件

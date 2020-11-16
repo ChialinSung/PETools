@@ -18,13 +18,14 @@ coding by Song Jialin (Chialin)
 #include <winnt.h>
 #include <Windows.h>
 
-void PrintPE::PrintNTHeaders(char* lpszFile) {
-	LPVOID pFileBuffer = NULL;
-	PIMAGE_DOS_HEADER pDosHeader = NULL;
-	PIMAGE_NT_HEADERS pNTHeader = NULL;
-	PIMAGE_FILE_HEADER pPEHeader = NULL;
-	PIMAGE_OPTIONAL_HEADER32 pOptionHeader = NULL;
-	PIMAGE_SECTION_HEADER pSectionHeader = NULL;
+//打印PE头信息
+void PrintPE::printPEHeaders(char* lpszFile) {
+	pFileBuffer = NULL;
+	pDosHeader = NULL;
+	pNTHeader = NULL;
+	pPEHeader = NULL;
+	pOptionHeader = NULL;
+	pSectionHeader = NULL;
 
 	ReadPE rpe;
 	pFileBuffer = rpe.ReadPEFile(lpszFile);

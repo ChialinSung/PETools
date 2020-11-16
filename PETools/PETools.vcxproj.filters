@@ -27,6 +27,9 @@
     <ClCompile Include="PrintPE.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="File2Image.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestClass.h">
@@ -36,6 +39,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="PrintPE.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="File2Image.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

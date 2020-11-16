@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="File2Image.cpp" />
     <ClCompile Include="PETools.cpp" />
     <ClCompile Include="PrintPE.cpp" />
     <ClCompile Include="ReadPE.cpp" />
     <ClCompile Include="TestClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="File2Image.h" />
     <ClInclude Include="PrintPE.h" />
     <ClInclude Include="ReadPE.h" />
     <ClInclude Include="TestClass.h" />

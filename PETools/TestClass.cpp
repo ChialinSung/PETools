@@ -16,5 +16,7 @@ coding by Song Jialin (Chialin)
 using namespace std;
 
 void TestClass::testClass() {
-		cout << "hello class";
+	x = 10;
+	cout << "hello class" << endl;
+	cout << x;
 }
