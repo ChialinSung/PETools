@@ -1,2 +1,9 @@
 ﻿  File2Image.cpp
+  Image2newFile.cpp
+  Methods.cpp
+  PETools.cpp
+  PrintPE.cpp
+  ReadPE.cpp
+  TestClass.cpp
+  正在生成代码...
   PETools.vcxproj -> C:\Users\chialin\source\repos\PETools\Debug\PETools.exe

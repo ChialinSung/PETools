@@ -1,6 +1,14 @@
+
+/*
+
+coding by Song Jialin (Chialin)
+2020年11月17日20:52:28
+
+类作用：由Filebuffer转为ImageBuffer
+*/
+
+
 #include "File2Image.h"
-#include "PrintPE.h"
-#include "ReadPE.h"
 
 #include <minwindef.h>
 #include <iostream>
@@ -8,16 +16,12 @@
 #include <Windows.h>
 #include <fstream>
 
-DWORD File2Image::readFile2Image(char* lpszFile) {
-	PIMAGE_DOS_HEADER pDosHeader = NULL;
-	PIMAGE_NT_HEADERS pNTHeader = NULL;
-	PIMAGE_FILE_HEADER pPEHeader = NULL;
-	PIMAGE_OPTIONAL_HEADER32 pOptionHeader = NULL;
-	PIMAGE_SECTION_HEADER pSectionHeader = NULL;
-	LPVOID pFileBuffer = NULL;
-	
-	ReadPE rpe;
-	pFileBuffer = rpe.ReadPEFile(lpszFile);
+DWORD File2Image::readFile2Image(LPVOID pFileBuffer, LPVOID& pImageBuffer) {
+	pDosHeader = NULL;
+	pNTHeader = NULL;
+	pPEHeader = NULL;
+	pOptionHeader = NULL;
+	pSectionHeader = NULL;
 
 	if (!pFileBuffer)
 	{
@@ -39,10 +43,9 @@ DWORD File2Image::readFile2Image(char* lpszFile) {
 	pOptionHeader = (PIMAGE_OPTIONAL_HEADER32)((DWORD)pPEHeader + IMAGE_SIZEOF_FILE_HEADER);
 	pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pOptionHeader + pPEHeader->SizeOfOptionalHeader);
 
-	LPVOID pImageBuffer = NULL;
 	pImageBuffer = malloc((pOptionHeader->SizeOfImage));
 
-	if (!pFileBuffer)
+	if (!pImageBuffer)
 	{
 		printf(" 分配Image空间失败! ");
 		return NULL;
@@ -55,6 +58,6 @@ DWORD File2Image::readFile2Image(char* lpszFile) {
 		memcpy((LPVOID)((DWORD)(pImageBuffer) + pSectionHeader[i].VirtualAddress), (LPVOID)((DWORD)pFileBuffer + pSectionHeader[i].PointerToRawData), pSectionHeader[i].SizeOfRawData);
 	}
 
-	printf("ImageBuffer生成成功！");
+	printf("ImageBuffer生成成功！\n");
 	return pOptionHeader->SizeOfImage;
 }

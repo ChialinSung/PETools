@@ -20,10 +20,9 @@ coding by Song Jialin (Chialin)
 #include <fstream>
 
 
-void* ReadPE::ReadPEFile(char* lpszFile){
+DWORD ReadPE::ReadPEFile(LPSTR lpszFile,LPVOID& pFileBuffer){
 	FILE* pFile = NULL;
 	DWORD fileSize = 0;
-	LPVOID pFileBuffer = NULL;
 
 	//打开文件	
 	pFile = fopen(lpszFile, "rb");
@@ -43,7 +42,7 @@ void* ReadPE::ReadPEFile(char* lpszFile){
 	{
 		printf(" 分配空间失败! ");
 		fclose(pFile);
-		return NULL;
+		return 0;
 	}
 	//将文件数据读取到缓冲区	
 	size_t n = fread(pFileBuffer, fileSize, 1, pFile);
@@ -52,11 +51,11 @@ void* ReadPE::ReadPEFile(char* lpszFile){
 		printf(" 读取数据失败! ");
 		free(pFileBuffer);
 		fclose(pFile);
-		return NULL;
+		return 0;
 	}
 	//关闭文件	
 	fclose(pFile);
-	return pFileBuffer;
+	return 1;
 }
 
 

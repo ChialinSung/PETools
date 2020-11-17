@@ -11,7 +11,6 @@ coding by Song Jialin (Chialin)
 
 
 #include "PrintPE.h"
-#include "ReadPE.h"
 
 #include <minwindef.h>
 #include <iostream>
@@ -19,16 +18,12 @@ coding by Song Jialin (Chialin)
 #include <Windows.h>
 
 //打印PE头信息
-void PrintPE::printPEHeaders(char* lpszFile) {
-	pFileBuffer = NULL;
+void PrintPE::printPEHeaders(LPVOID pFileBuffer) {
 	pDosHeader = NULL;
 	pNTHeader = NULL;
 	pPEHeader = NULL;
 	pOptionHeader = NULL;
 	pSectionHeader = NULL;
-
-	ReadPE rpe;
-	pFileBuffer = rpe.ReadPEFile(lpszFile);
 
 	if (!pFileBuffer)
 	{
@@ -106,5 +101,5 @@ void PrintPE::printPEHeaders(char* lpszFile) {
 	
 
 	//释放内存	
-	free(pFileBuffer);
+	//free(pFileBuffer);
 }
