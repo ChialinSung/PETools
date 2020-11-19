@@ -12,8 +12,9 @@ class Methods
 		PIMAGE_FILE_HEADER pPEHeader;
 		PIMAGE_OPTIONAL_HEADER32 pOptionHeader;
 		PIMAGE_SECTION_HEADER pSectionHeader;
-		DWORD minRange, maxRange;
 		BOOL memery2File(LPVOID pMemBuffer, DWORD size, LPSTR lpszFile);
 		DWORD RvaToFileOffset(LPVOID pFileBuffer, DWORD dwRva);
+		DWORD MoveNTHeaderAndSectionHeadersToDosStub(LPVOID pFileBuffer);
+		DWORD Align(DWORD dwOffset, DWORD dwAlign);
 };
 

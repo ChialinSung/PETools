@@ -3,7 +3,7 @@
 
 coding by Song Jialin (Chialin)
 最近一次修改时间：
-2020年11月17日20:54:48
+2020年11月19日11:12:49
 
 主程序。
 */
@@ -23,6 +23,7 @@ coding by Song Jialin (Chialin)
 #include "File2Image.h"
 #include "Image2newFile.h"
 #include "Methods.h"
+#include "AddCode.h"
 
 
 using namespace std;
@@ -32,6 +33,7 @@ int main()
     LPVOID pFileBuffer = NULL;
     LPVOID pImageBuffer = NULL;
     LPVOID pNewBuffer = NULL;
+    LPVOID pNewImageBuffer = NULL;
     DWORD tempSize = NULL;
     DWORD valueRVA = 0x1001;
 
@@ -50,14 +52,14 @@ int main()
 
     //将fileBuffer读到ImageBuffer
     File2Image f2i;
-    f2i.readFile2Image(pFileBuffer, pImageBuffer);
+    //f2i.readFile2Image(pFileBuffer, pImageBuffer);
 
     //将ImageBuffer转存为NewBuffer
-    Image2newFile i2n;
-    tempSize = i2n.copyImageBufferToNewBuffer(pImageBuffer, pNewBuffer);
+    //Image2newFile i2n;
+    //tempSize = i2n.copyImageBufferToNewBuffer(pImageBuffer, pNewBuffer);
 
     //存储为文件
-    Methods mts;
+    /*Methods mts;
 
     if (mts.memery2File(pNewBuffer, tempSize, outfilepath)) {
         printf("文件输出成功！\n");
@@ -65,10 +67,26 @@ int main()
     else
     {
         printf("文件输出失败！\n");
-    }
+    }*/
 
     //RVA转foa！偏移换算
-    printf("RVA值为%x在文件中的偏移位置foa为%x",valueRVA,mts.RvaToFileOffset(pFileBuffer, valueRVA));
+    //printf("RVA值为%x在文件中的偏移位置foa为%x",valueRVA,mts.RvaToFileOffset(pFileBuffer, valueRVA));
+
+    //插入代码
+    //插入代码节区，弹窗MessageBox
+    AddCode ace;
+    //ace.AddCodeToCodeSec(PEfilepath,outfilepath);
+
+    //插入节（新增一个节）
+    ace.AddSection(pFileBuffer, pNewBuffer, rpe.ReadPEFile(PEfilepath, pFileBuffer), 40);
+    
+    //扩大最后一个节
+    //ace.ExpandLastSection(pFileBuffer, pNewBuffer, DWORD dwOldSize, DWORD dwExpandSize);
+
+    //合并节
+    ace.MergeSection(pImageBuffer, pNewImageBuffer, f2i.readFile2Image(pFileBuffer, pImageBuffer));
+
+
 
     //测试类文件
     //TestClass tre;

@@ -45,7 +45,8 @@ DWORD ReadPE::ReadPEFile(LPSTR lpszFile,LPVOID& pFileBuffer){
 		return 0;
 	}
 	//将文件数据读取到缓冲区	
-	size_t n = fread(pFileBuffer, fileSize, 1, pFile);
+	size_t n = fread(pFileBuffer, 1, fileSize, pFile);
+	//printf("读了%x",n);
 	if (!n)
 	{
 		printf(" 读取数据失败! ");
@@ -55,7 +56,7 @@ DWORD ReadPE::ReadPEFile(LPSTR lpszFile,LPVOID& pFileBuffer){
 	}
 	//关闭文件	
 	fclose(pFile);
-	return 1;
+	return n;
 }
 
 

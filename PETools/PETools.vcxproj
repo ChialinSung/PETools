@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddCode.cpp" />
     <ClCompile Include="File2Image.cpp" />
     <ClCompile Include="Image2newFile.cpp" />
     <ClCompile Include="Methods.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="TestClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddCode.h" />
     <ClInclude Include="File2Image.h" />
     <ClInclude Include="Image2newFile.h" />
     <ClInclude Include="Methods.h" />
